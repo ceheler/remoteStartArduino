@@ -1,8 +1,11 @@
-  
-//**********************************************************************************************
+/******************************************************************************************************
+** Written by: Chris Eheler
+** TODO: add phone number verification, add gps functinality, add engine running feature
+** Suplies used: Arduino Mega 2560, 4 relay module, SIM808 EVB, Hologram.io SIM
+******************************************************************************************************/
 #include<GSM.h>
 #define GPSmodule Serial3                               // Hardware serial 3 on Arduino
-//**********************************************************************************************
+
   String textMessage;                                   // Variable to store text message
   const int ignitionOutput = 53;                        // LED connected to digital pin 53 of Arduino
   const int starterOutput  = 51;                        // LED connected to digital pin 53 of Arduino
@@ -13,9 +16,9 @@
       pinMode(ignitionOutput, OUTPUT);                  // Set ignitionOutput as OUTPUT
       pinMode(starterOutput, OUTPUT);                   // Set starterOutput as OUTPUT
       digitalWrite(ignitionOutput, HIGH);               // Ignition defaults to off
-      digitalWrite(starterOutput, HIGH);                // Ignition defaults to off
+      digitalWrite(starterOutput, HIGH);                // Starter defaults to off
       delay(2000);                                      // Give time for GSM GPS module logon to GSM network
-      Serial.println("GPSmodule ready...");             //Print test in Serial Monitor
+      //Serial.println("GPSmodule ready...");           //Print test in Serial Monitor
       GPSmodule.println("AT");
       delay(50);  
       GPSmodule.println("AT+CMEE=1");
