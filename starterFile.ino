@@ -1,7 +1,7 @@
   
 //**********************************************************************************************
 #include<GSM.h>
-#define GPSmodule Serial3                             // Hardware serial 3 on Arduino
+#define GPSmodule Serial3                               // Hardware serial 3 on Arduino
 //**********************************************************************************************
   String textMessage;                                   // Variable to store text message
   const int ignitionOutput = 53;                        // LED connected to digital pin 53 of Arduino
@@ -41,8 +41,8 @@
       Serial.println("Revied start text"); 
       textMessage = "";                                // Clear message for engine off text
       startEngine();
-      String message = "LED is ON";
-      serialSMS(message);
+      //String message = "Start message recived";
+      //serialSMS(message);
     }
   }
 
