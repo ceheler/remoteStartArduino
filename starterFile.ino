@@ -41,39 +41,36 @@
       Serial.println("Revied start text"); 
       textMessage = "";                                // Clear message for engine off text
       startEngine();
-      //String message = "Start message recived";
-      //serialSMS(message);
     }
   }
 
-// Function that sends output to serial
-  void serialSMS(String message) {
-    Serial.println(message);
-    }
+// Function that starts the engine
 
   void startEngine () {
     digitalWrite(ignitionOutput, LOW);               // Turn on ignition of vehcile via IGN Relay
     delay(1500);                                     // Let fuel pump build pressure
-    digitalWrite(starterOutput, LOW);                // Run starter for 1.5 seconds or untill engine is running
-    delay(1500);
-    digitalWrite(starterOutput, HIGH);                                  
+    digitalWrite(starterOutput, LOW);                // Turn on the starter relay
+    delay(1500);                                     // Run starter for 1.5 seconds
+    digitalWrite(starterOutput, HIGH);               // Turn off the starter relay               
     engineRunning = true;                            // Set engine to running
 
-    // for loop checking for engine off text evey second for 10 mins
+ // for loop checking for engine off text evey second for 10 mins
     
     for(int i=0; i < 600; i++) {
-      textMessage = GPSmodule.readString();
-      if (textMessage.indexOf("Off") >= 0) {
+      textMessage = GPSmodule.readString();          // Listen to the incoming text messages
+      if (textMessage.indexOf("Off") >= 0) {         // Turn off the engine when the off text is recived
         stopEngine();
-        break;
+        break;                                       // Exit the loop
         } else {
-          delay(1000);
+          delay(1000);                               // Repeat once a second
           }
       }
-    stopEngine();
+    stopEngine();                                    // Turn off the engine
     }
 
+// Fuction that stop the engine
+
   void stopEngine () {
-    digitalWrite(ignitionOutput, HIGH);
+    digitalWrite(ignitionOutput, HIGH);             // Turn off the igntiion realay
     engineRunning = false;
     }
