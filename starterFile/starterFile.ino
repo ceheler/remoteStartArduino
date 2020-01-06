@@ -47,7 +47,7 @@
       }
     delay(10);                                         // Incoming SMS misses first if statement occasionally without this delay  
 
-    if (textMessage.indexOf("15302286244") <= 0 && textMessage != "") {
+    if (textMessage.indexOf("xxxxxxxxxxx") <= 0 && textMessage != "") {
       Serial.println("Revied text from a stranger");   // Phone number validation loop
       textMessage = "";                                // Ignore texts from random people
     }
